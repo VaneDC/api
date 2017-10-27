@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
     url(r'^proveedores/', include('proveedores.urls', namespace="proveedores")),
+    url(r'^productos/', include('productos.urls',namespace="productos")),
 ]
