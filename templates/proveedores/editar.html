@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+	Nuevo Proveedor
+{% endblock %}
+{% block content %}
+	<h1>Nuevo Proveedor</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+        
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-info">Limpiar Formulario</button>
+            <a href="{% url 'proveedores:index' %}" class="btn btn-secondary">Volver</a>
+
+        </form>
+{% endblock %}

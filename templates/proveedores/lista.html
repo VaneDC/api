@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+	Editar Proveedor
+{% endblock %}
+{% block content %}
+	<h1>Editar Proveedor</h1>
+        {% for proveedor in proveedores %}
+		    
+		        <div>
+		        
+		        <a class="btn btn-default" href="{% url 'proveedores:editar_proveedor' pk=proveedor.idProveedor %}">
+		        {{ proveedor.nombre}}
+		        {{ proveedor.telefono }}
+		        {{ proveedor.mail }}
+		        {{ proveedor.comentario }}
+		         </a>
+		        </div>
+		    
+		{% endfor %}
+{% endblock %}
