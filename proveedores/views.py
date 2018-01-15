@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from .models import Proveedor
 
 def index(request):
-	return render(request, 'proveedores/index.html')
+	return listaProveedores(request, 'index')
 
 def nuevoProveedor(request):
     if request.method == "POST":
@@ -16,9 +16,9 @@ def nuevoProveedor(request):
         form = ProveedorForm()
     return render(request, 'proveedores/nuevo.html', {'form':form})
 
-def listaProveedores(request):
+def listaProveedores(request, pagina):
     proveedores = Proveedor.objects.all()
-    return render(request, 'proveedores/lista.html', {'proveedores':proveedores})
+    return render(request, 'proveedores/'+ pagina + '.html', {'proveedores':proveedores})
 
 def editarProveedor(request, pk):
     proveedor = get_object_or_404(Proveedor, pk=pk)
@@ -30,3 +30,8 @@ def editarProveedor(request, pk):
     else:
         form = ProveedorForm(instance=proveedor)
     return render(request, 'proveedores/editar.html', {'form': form})
+
+def eliminarProveedor(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    proveedor.delete()
+    return redirect('proveedores:index')
