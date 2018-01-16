@@ -1,10 +1,23 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from .forms import ProveedorForm
-from django.shortcuts import redirect
 from .models import Proveedor
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
-	return listaProveedores(request, 'index')
+    objetos = Proveedor.objects.all()
+    paginator = Paginator(objetos, 1) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        proveedores = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        proveedores = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        proveedores = paginator.page(paginator.num_pages)
+    uno = 2 - 1
+    return render_to_response('proveedores/index.html', {"proveedores": proveedores})
 
 def nuevoProveedor(request):
     if request.method == "POST":
