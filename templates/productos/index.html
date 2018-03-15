@@ -1,7 +1,93 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load math %}
 {% block title %}
 	Productos
 {% endblock %}
 {% block content %}
-	<a href="/productos/nuevo/" class="btn btn-lg btn-primary index">nuevo producto</a>
+	<a href="{% url 'productos:nuevo' %}" class="btn btn-lg btn-primary index">Nuevo Producto</a><br>
+	<table class="table" style="margin-top: 3em;">
+			<thead>
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Descripción</th>
+					<th scope="col">Stock</th>
+					<th scope="col">Stock Mínimo</th>
+					<th scope="col">Costo</th>
+					<th scope="col">Precio Minorista</th>
+					<th scope="col">Precio Mayorista</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+        {% for producto in productos %}
+		    
+		        <tr>
+		        <td>{{ producto.nombre}}</td>
+		        <td>{{ producto.descripcion }}</td>
+		        <td>{{ producto.stock }}</td>
+		        <td>{{ producto.stock_minimo }}</td>
+		        <td>{{ producto.costo }}</td>
+				<td>{{ producto.precio_minorista }}</td>
+				<td>{{ producto.precio_mayorista }}</td>
+		        <td><a class="btn btn-default" href="{% url 'productos:editar_producto' pk=producto.idProducto %}">
+		        	<img src="{% static 'img/edit.png' %}" style="width: 10%;"></a>
+		        </td>
+		        <td><a class="btn btn-default" href="{% url 'productos:eliminar_producto' pk=producto.idProducto %}">
+		        	<img src="{% static 'img/borrar.png' %}" style="width: 10%;"></a>
+		        </td>
+
+		        </tr>
+		    
+		{% endfor %}
+		</tbody>
+		</table>
+
+	<div class="pagination">
+    	<span class="step-links">
+	    	<!--primera pagina-->
+	    	{% if productos.number != 1 %}
+	            <a role="button" class="btn btn-outline-primary" href="?page=1">1</a>
+	    	{% endif %}
+	        <!--fin primera pagina-->	
+
+	        <!--puntos suspensivos cuando son mas paginas para mostrar-->
+			{% if productos.paginator.num_pages > 3 and productos.number|add:"-1" > 2 %}
+				<button class="btn btn-outline-primary" disabled>...</button>
+			{% endif %}
+	        <!--fin puntos suspensivos cuando son muchas paginas para mostrar-->   
+	       	
+			<!--pagina anterior si es que tiene y no esta cerca de la primera pagina-->
+	        {% if productos.number > 2 and productos.has_previous%}
+	            <a class="btn btn-outline-primary" href="?page={{ productos.previous_page_number }}">{{ productos.previous_page_number }}</a>
+	        {% endif %}
+			<!--fin pagina anterior si es que tiene y no esta cerca de la primera pagina-->
+
+			<!--pagina actual-->
+	        <span class="current">
+	            <a role="button" class="btn btn-primary btn-lg active" aria-pressed="true" href="?page={{ productos.number }}">{{ productos.number }}</a>
+	        </span>
+			<!--fin pagina actual-->
+
+			<!--pagina siguiente si tiene y no esta cerca de la ultima pagina-->
+	        {% if productos.has_next and productos.number < productos.paginator.num_pages|sub:"1" %}
+	            <a class="btn btn-outline-primary" href="?page={{ productos.next_page_number }}">{{ productos.next_page_number }}</a>
+	        {% endif %}
+			<!--fin pagina siguiente si tiene y no esta cerca de la ultima pagina-->
+			
+			<!--puntos suspensivos cuando son muchas paginas para mostrar--> 
+			{% if productos.paginator.num_pages > 3 and productos.paginator.num_pages|sub:productos.number > 2 %}
+				<button class="btn btn-outline-primary" disabled>...</button>
+			{% endif %}
+	        <!--fin puntos suspensivos cuando son muchas paginas para mostrar--> 
+
+			<!--ultima pagina-->
+	    	{% if productos.number != productos.paginator.num_pages %}
+	            <a role="button" class="btn btn-outline-primary" href="?page={{ productos.paginator.num_pages }}">{{ productos.paginator.num_pages }}</a>
+	    	{% endif %}
+	        <!--ultima pagina-->
+	    </span>
+	</div>
+
 {% endblock %}

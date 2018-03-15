@@ -1,0 +1,21 @@
+{% for producto in productos %}
+    {# Each "contact" is a Contact model object. #}
+    {{ producto.nombre }}<br />
+    ...
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if productos.has_previous %}
+            <a href="?page={{ productos.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ productos.number }} of {{ productos.paginator.num_pages }}.
+        </span>
+
+        {% if productos.has_next %}
+            <a href="?page={{ productos.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
