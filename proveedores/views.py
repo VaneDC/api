@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from .forms import ProveedorForm
 from .models import Proveedor
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+import json
 
 def index(request):
     objetos = Proveedor.objects.all()
@@ -48,3 +50,18 @@ def eliminarProveedor(request, pk):
     proveedor = get_object_or_404(Proveedor, pk=pk)
     proveedor.delete()
     return redirect('proveedores:index')
+
+def buscador(request):
+    if request.is_ajax():
+        search=request.GET.get('start','')
+        proveedores = Proveedor.objects.filter(nombre__icontains=search)
+        results=[]
+        for proveedor in proveedores:
+            proveedor_json={}
+            proveedor_json['label']=proveedor.nombre
+            proveedor_json['value']=proveedor.nombre
+            results.append(proveedor_json)
+        data_json=json.dumps(results)
+        return HttpResponse(data_json, content_type='application/json')
+    else:
+        return redirect("proveedores:index")
