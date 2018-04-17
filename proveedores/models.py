@@ -7,3 +7,4 @@ class Proveedor(models.Model):
     telefono = models.CharField(max_length=50)
     mail = models.CharField(max_length=50)
     comentario = models.TextField()
+ 

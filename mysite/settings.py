@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'proveedores',
     'productos',
+    'factura',
+    'facturaCompra',
 )
 
 MIDDLEWARE_CLASSES = (
