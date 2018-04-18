@@ -41,7 +41,7 @@ def editarProveedor(request, pk):
         form = ProveedorForm(request.POST, instance=proveedor)
         if form.is_valid():
             proveedor = form.save()
-            return redirect('/proveedores/lista')
+            return redirect('/proveedores/')
     else:
         form = ProveedorForm(instance=proveedor)
     return render(request, 'proveedores/editar.html', {'form': form})

@@ -40,7 +40,7 @@ def editarProducto(request, pk):
         form = ProductoForm(request.POST, instance=producto)
         if form.is_valid():
             producto = form.save()
-            return redirect('/productos/lista')
+            return redirect('/productos/')
     else:
         form = ProductoForm(instance=producto)
     return render(request, 'productos/editar.html', {'form': form})
