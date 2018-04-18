@@ -5,7 +5,20 @@
 	Productos
 {% endblock %}
 {% block content %}
-	<a href="{% url 'productos:nuevo' %}" class="btn btn-lg btn-primary index">Nuevo Producto</a><br>
+	<form class="form-row">
+		<div class="col">
+			<a href="{% url 'proveedores:nuevo' %}" class="btn btn-lg btn-primary index">Nuevo Proveedor</a>
+			</div>
+		<div class="col">
+		  <label for="buscarProveedor"></label>
+		  <input type="text" placeholder="Buscar proveedor..." class="form-control" id="buscarProveedor">
+		</div>
+	</form>
+
+	<br>
+ 	<table class="table" style="margin-top: 3em;">
+ 			<thead>
+ 				<tr>
 	<table class="table" style="margin-top: 3em;">
 			<thead>
 				<tr>

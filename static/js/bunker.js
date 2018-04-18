@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('#buscarProveedor').autocomplete({
-		minLength: 2,
+		minLength: 2, 
 		source: function(req, add){
 			var search = $('#buscarProveedor').val();
 			$.ajax({
@@ -21,8 +21,10 @@ $(document).ready(function(){
 				}
 			});
 		}
+		
 
 	});
+	$(".ui-helper-hidden-accessible").css({"display":"none"})
 
 });
 

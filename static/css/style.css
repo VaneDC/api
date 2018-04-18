@@ -15,3 +15,6 @@
 	margin-top: 0.5em;
 }
 
+.ui-helper-hidden-accessible{ 
+	display:none; 
+}
