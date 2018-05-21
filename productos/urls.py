@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^nuevo/$', views.nuevoProducto, name='nuevo'),
     url(r'^editar/(?P<pk>[0-9]+)/edit/$', views.editarProducto, name='editar_producto'),
     url(r'^eliminar/(?P<pk>[0-9]+)/$', views.eliminarProducto, name='eliminar_producto'),
+    url(r'^busqueda/$', views.buscarProducto, name="buscar_producto"),
 ]
