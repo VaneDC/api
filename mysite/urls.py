@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^proveedores/', include('proveedores.urls', namespace="proveedores")),
     url(r'^productos/', include('productos.urls',namespace="productos")),
+    url(r'^facturaCompra/', include('facturaCompra.urls', namespace="facturaCompra")),
 ]

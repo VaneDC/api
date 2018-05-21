@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+	Nueva Factura de Compra
+{% endblock %}
+{% block content %}
+	<h1>Nueva Factura de Compra</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+        	{{ form.as_p }}
+            <br>
+            <br>
+            <button type="submit" class="save btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-info">Limpiar Formulario</button>
+            <a href="/facturaCompra/" class="btn btn-secondary">Volver</a>
+        </form>
+{% endblock %}

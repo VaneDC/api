@@ -1,6 +1,9 @@
 from django.db import models
-from factura.models import Factura
+from proveedores.models import Proveedor 
+from django.utils import timezone
 
 class facturaCompra(models.Model):
     idFacturaCompra = models.BigAutoField(primary_key=True)
-    idFactura = models.OneToOneField(Factura, on_delete = models.CASCADE)
+    idProveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    fecha = models.DateTimeField(default=timezone.now)
+    total = models.FloatField()

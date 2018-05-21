@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load math %}
+{% block title %}
+	Facturas de Compras
+{% endblock %}
+
+{% block active_compras %}active{% endblock %}
+
+{% block content %}
+<form class="form-row">
+		<div class="col">
+			<a href="{% url 'facturaCompra:nuevo' %}" class="btn btn-lg btn-primary index">Nueva Factura de Compra</a>
+			</div>
+		<div class="col">
+		  <label for="buscarProducto"></label>
+		  <input type="text" placeholder="Buscar producto..." class="form-control" id="buscarProducto">
+		</div>
+	</form>
+
+	<br>
+{% endblock %}
