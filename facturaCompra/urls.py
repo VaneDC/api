@@ -5,5 +5,5 @@ app_name = "facturaCompra"
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
-    url(r'^nuevo/$', views.nuevaFacturaCompra, name="nuevo"),
+    url(r'^nuevo/$', views.nuevaFacturaCompra.as_view(), name="nuevo"),
 ]

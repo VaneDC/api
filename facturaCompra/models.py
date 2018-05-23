@@ -6,4 +6,4 @@ class facturaCompra(models.Model):
     idFacturaCompra = models.BigAutoField(primary_key=True)
     idProveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     fecha = models.DateTimeField(default=timezone.now)
-    total = models.FloatField()
+    total = models.DecimalField(max_digits=10,decimal_places=2)
