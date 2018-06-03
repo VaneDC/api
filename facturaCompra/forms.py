@@ -1,3 +1,4 @@
+from django.forms.models import inlineformset_factory
 from django import forms
 from .models import facturaCompra
 from facturaCompraContieneProductos.models import facturaCompraContieneProductos
@@ -13,3 +14,5 @@ class facturaCompraContieneProductosForm(forms.ModelForm):
     class Meta:
     	model = facturaCompraContieneProductos
     	fields = ('idProducto', 'precio', 'cantidad', 'descuento')
+
+facturaCompraContieneProductosFormSet = inlineformset_factory(facturaCompra, facturaCompraContieneProductos, form=facturaCompraContieneProductosForm, extra=2)

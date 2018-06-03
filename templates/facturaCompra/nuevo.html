@@ -4,8 +4,14 @@
 {% endblock %}
 {% block content %}
 	<h1>Nueva Factura de Compra</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
-            Proveedor: {{ form2.idProveedor }}
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ productosCompraFormSet.management_form }}
+                {% for productosCompraForm in productosCompraFormSet %}
+                    {{ productosCompraForm.as_p}}
+                {% endfor %}
+            <!--Proveedor: {{ form2.idProveedor }}
             <br>
             fecha: {{ form2.fecha }}
             <br>
@@ -17,7 +23,7 @@
             <br>
             Descuento: {{ form.descuento }}
             <br>
-            Total: {{ form2.total }}
+            Total: {{ form2.total }}-->
         	
             
             <br>
