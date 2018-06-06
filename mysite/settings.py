@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'facturaCompra.apps.FacturaCompraConfig',
     'productos.apps.ProductosConfig',
     'proveedores.apps.ProveedoresConfig',
+    'mediosDePago.apps.MediosdepagoConfig',
     'tiposDeVenta.apps.TiposdeventaConfig',
+    
 ]
 
 MIDDLEWARE = [
