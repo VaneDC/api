@@ -11,8 +11,6 @@ class facturaCompraContieneProductosAdmin(admin.ModelAdmin):
     list_display = ('idProducto','precio','cantidad','descuento')
 
    
-
-
 admin.site.register(facturaCompra,facturaCompraAdmin)
 admin.site.register(facturaCompraContieneProductos,facturaCompraContieneProductosAdmin)
 
