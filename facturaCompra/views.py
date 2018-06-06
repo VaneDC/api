@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from .models import facturaCompra
-from facturaCompraContieneProductos.models import facturaCompraContieneProductos
+from .models import facturaCompra , facturaCompraContieneProductos
 from .forms import facturaCompraForm, facturaCompraContieneProductosFormSet
 from django.views.generic import CreateView
 

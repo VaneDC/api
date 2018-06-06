@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import facturaCompra
+from .models import facturaCompra , facturaCompraContieneProductos
 
 admin.site.register(facturaCompra)
-# Register your models here.
+admin.site.register(facturaCompraContieneProductos)
+

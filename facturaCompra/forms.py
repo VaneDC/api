@@ -1,7 +1,7 @@
 from django.forms.models import inlineformset_factory
 from django import forms
-from .models import facturaCompra
-from facturaCompraContieneProductos.models import facturaCompraContieneProductos
+from .models import facturaCompra , facturaCompraContieneProductos
+
 
 class facturaCompraForm(forms.ModelForm):
     
