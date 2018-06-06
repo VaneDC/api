@@ -8,8 +8,13 @@ class Proveedor(models.Model):
     mail = models.CharField(max_length=50)
     comentario = models.TextField()
     
+    class Meta:
+        verbose_name = "Proveedor"
+        verbose_name_plural = "Proveedores"
+
     def __str__(self):
-    	return r'{0}'.format(self.nombre)
+        return self.nombre
+
 
 
  
