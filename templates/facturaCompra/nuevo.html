@@ -6,11 +6,21 @@
 	<h1>Nueva Factura de Compra</h1>
         <form method="POST" class="post-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            Proveedor: {{ form.idProveedor }}
+            <br>
+            Fecha: {{ form.fecha }}
+            <br>
             {{ productosCompraFormSet.management_form }}
+            <br>
                 {% for productosCompraForm in productosCompraFormSet %}
-                    {{ productosCompraForm.as_p}}
+                    <div class="dynamic-form">
+                        {{ productosCompraForm.as_p}}
+                        <input type="button" value="Quitar Producto" class="delete-row">
+                    </div>
                 {% endfor %}
+            <input type="button" value="Añadir producto" class="add-row">
+            <br>
+            Total: {{ form.total }}
             <!--Proveedor: {{ form2.idProveedor }}
             <br>
             fecha: {{ form2.fecha }}
@@ -32,4 +42,17 @@
             <button type="reset" class="btn btn-info">Limpiar Formulario</button>
             <a href="/facturaCompra/" class="btn btn-secondary">Volver</a>
         </form>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+        $('.add-row').click(function() {
+            return addForm(this, '{{ productosCompraFormSet.prefix }}');
+        });
+        $('.delete-row').click(function() {
+            return deleteForm(this, '{{ productosCompraFormSet.prefix }}');
+        });
+    });
+        
+    </script>
 {% endblock %}
