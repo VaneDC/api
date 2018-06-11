@@ -4,13 +4,24 @@
 #import json
 # Create your views here.
 from .models import Producto
+#CRUD
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+#FORM
 from .forms import ProductoForm
+#ADMIN
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
-#para mostrar la lista de productos
+#Para que solo un usuario identificado pueda editar,borrar y crear
+class StaffRequiredMixin(object):
+    @method_decorator(staff_member_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+#Para mostrar la lista de productos
 class ProductoListView(ListView):
     model = Producto
 
@@ -19,12 +30,14 @@ class ProductoDetailView(DetailView):
     model = Producto
 
 #Para crear un producto
+@method_decorator(staff_member_required, name='dispatch')
 class ProductoCreate(CreateView):
     model = Producto
     form_class = ProductoForm
     success_url = reverse_lazy('productos:productos')
 
 #Para editar un producto
+@method_decorator(staff_member_required, name='dispatch')
 class ProductoUpdate(UpdateView):
     model = Producto
     form_class = ProductoForm
@@ -34,6 +47,7 @@ class ProductoUpdate(UpdateView):
         return reverse_lazy('productos:editar',args=[self.object.idProducto]) + '?ok'
 
 #Para borrar un producto
+@method_decorator(staff_member_required, name='dispatch')
 class ProductoDelete(DeleteView):
     model = Producto
     success_url = reverse_lazy('productos:productos')
