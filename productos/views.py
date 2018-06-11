@@ -34,9 +34,9 @@ class ProductoUpdate(UpdateView):
         return reverse_lazy('productos:editar',args=[self.object.idProducto]) + '?ok'
 
 #Para borrar un producto
-#class AuthorDelete(DeleteView):
-#    model = Author
-#    success_url = reverse_lazy('author-list')
+class ProductoDelete(DeleteView):
+    model = Producto
+    success_url = reverse_lazy('productos:productos')
 
 
 #def index(request):

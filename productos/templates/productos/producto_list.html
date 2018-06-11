@@ -34,8 +34,8 @@
               <td>
                 <a class="btn btn-default" href="{% url 'productos:editar' producto.idProducto %}">editar</a>
               </td>
-              <td><a class="btn btn-default" href="#">
-                <img src="#" style="width: 10%;">borrar</a>
+              <td>
+                <a class="btn btn-default" href="{% url 'productos:borrar' producto.idProducto %}">borrar</a>
               </td>
   
               </tr>
