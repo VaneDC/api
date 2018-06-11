@@ -1,5 +1,4 @@
 #from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-#from .forms import ProductoForm
 #from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #from django.http import HttpResponse
 #import json
@@ -9,6 +8,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+from .forms import ProductoForm
 
 #para mostrar la lista de productos
 class ProductoListView(ListView):
@@ -21,13 +21,13 @@ class ProductoDetailView(DetailView):
 #Para crear un producto
 class ProductoCreate(CreateView):
     model = Producto
-    fields = ['nombre','descripcion','stock','stock_minimo','costo','precio_minorista','precio_mayorista']
+    form_class = ProductoForm
     success_url = reverse_lazy('productos:productos')
 
 #Para editar un producto
 class ProductoUpdate(UpdateView):
     model = Producto
-    fields = ['nombre','descripcion','stock','stock_minimo','costo','precio_minorista','precio_mayorista']
+    form_class = ProductoForm
     template_name_suffix = '_update_form'
 
     def get_success_url(self):
