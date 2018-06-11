@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <!--TABLA-->
+    <table class="table" style="margin-top: 3em;">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Stock Mínimo</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Precio Minorista</th>
+            <th scope="col">Precio Mayorista</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+              <td>{{ producto.nombre}}</td>
+              <td>{{ producto.descripcion }}</td>
+              <td>{{ producto.stock }}</td>
+              <td>{{ producto.stock_minimo }}</td>
+              <td>{{ producto.costo }}</td>
+          <td>{{ producto.precio_minorista }}</td>
+          <td>{{ producto.precio_mayorista }}</td>
+              <td>
+                <a class="btn btn-default" href="{% url 'productos:editar' producto.idProducto %}">editar</a>
+              </td>
+              <td><a class="btn btn-default" href="#">
+                <img src="#" style="width: 10%;">borrar</a>
+              </td>
+  
+              </tr>
+      </tbody>
+      </table>
+    <!--FIN TABLA
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <h2 class="section-heading mb-4">{{producto.nombre}}</h2>
+        <div>
+          {{producto.descripcion|safe}}
+          {% if request.user.is_staff %}
+            <p><a href="#">Editar</a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</main>
+{% endblock %}
