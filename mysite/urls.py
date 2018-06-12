@@ -12,6 +12,8 @@ urlpatterns = [
     path('', include('core.urls')),
     path('productos/', include(productos_patterns)),
     path('admin/', admin.site.urls),
+    #path de la autenticacion
+    path('accounts/',include('django.contrib.auth.urls')),
     #url(r'^admin/', admin.site.urls),
     #url(r'^$', views.index, name='index'),
     #url(r'^proveedores/', include('proveedores.urls', namespace="proveedores")),
